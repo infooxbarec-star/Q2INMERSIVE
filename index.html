@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q2 Saloon — Vehículos de Lujo en Ecuador</title>
+  <meta name="description" content="Q2 Saloon — Los vehículos más exclusivos en Ecuador. Una experiencia automotriz sin precedentes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     LOADER
+═══════════════════════════════════════════════════ -->
+<div id="loader" class="loader" aria-hidden="true">
+  <div class="loader-content">
+    <div class="loader-wordmark">Q2 SALOON</div>
+    <div class="loader-track"><div class="loader-bar" id="loaderBar"></div></div>
+    <div class="loader-sub">Initializing Experience</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     LANDING
+═══════════════════════════════════════════════════ -->
+<section id="landing" class="landing" aria-label="Landing">
+
+  <!-- Architectural environment -->
+  <div class="landing-env" aria-hidden="true">
+    <div class="land-col land-col--left"></div>
+    <div class="land-col land-col--right"></div>
+    <div class="land-arch-top"></div>
+    <div class="land-spot land-spot--1"></div>
+    <div class="land-spot land-spot--2"></div>
+    <div class="land-floor">
+      <div class="land-floor-grid"></div>
+      <div class="land-floor-gloss"></div>
+    </div>
+    <div class="land-horizon"></div>
+  </div>
+
+  <!-- Hero car silhouette (populated by JS) -->
+  <div class="landing-car-stage" aria-hidden="true">
+    <div class="lcs-glow"></div>
+    <div class="lcs-vehicle" id="landingVehicle"></div>
+    <div class="lcs-floor-ref"></div>
+  </div>
+
+  <!-- Hero copy -->
+  <div class="landing-copy">
+    <div class="landing-eyebrow">Ecuador · Vehículos Exclusivos · Est. 2018</div>
+    <h1 class="landing-wordmark">Q2 SALOON</h1>
+    <p class="landing-tagline">Exclusive Machines.<br><em>Curated for Ecuador.</em></p>
+    <button class="btn-enter" id="enterShowroom" aria-label="Enter the showroom">
+      <span class="btn-enter__label">Enter Showroom</span>
+      <span class="btn-enter__arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+  </div>
+
+  <!-- Scroll prompt -->
+  <div class="landing-scroll" aria-hidden="true">
+    <div class="ls-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════ -->
+<nav id="mainNav" class="main-nav" role="navigation" aria-label="Main">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="nav-logo" id="navLogo" aria-label="Q2 Saloon — home">Q2 SALOON</a>
+
+    <!-- Zone tabs (desktop) -->
+    <div class="nav-zones" role="tablist" aria-label="Showroom zones">
+      <button class="zone-tab active" data-zone="performance" role="tab" aria-selected="true">Performance</button>
+      <button class="zone-tab" data-zone="suv" role="tab" aria-selected="false">SUV</button>
+      <button class="zone-tab" data-zone="executive" role="tab" aria-selected="false">Executive</button>
+      <button class="zone-tab" data-zone="collector" role="tab" aria-selected="false">Collector</button>
+    </div>
+
+    <!-- Right actions -->
+    <div class="nav-right">
+      <button class="nav-link" id="navAbout">Nosotros</button>
+      <button class="nav-link nav-link--cta" id="navContact">Contacto</button>
+    </div>
+
+    <!-- Hamburger -->
+    <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false">
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer__inner">
+      <div class="md-section">
+        <div class="md-label">Showroom</div>
+        <button class="md-zone active" data-zone="performance">Performance</button>
+        <button class="md-zone" data-zone="suv">SUV</button>
+        <button class="md-zone" data-zone="executive">Executive</button>
+        <button class="md-zone" data-zone="collector">Collector</button>
+      </div>
+      <div class="md-section">
+        <div class="md-label">Empresa</div>
+        <button class="md-link" id="mdAbout">Nosotros</button>
+        <button class="md-link" id="mdContact">Contacto</button>
+        <a class="md-link md-whatsapp" href="https://wa.me/593000000000" target="_blank" rel="noopener">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     SHOWROOM
+═══════════════════════════════════════════════════ -->
+<section id="showroom" class="showroom" aria-label="Vehicle showroom">
+
+  <!-- Zone panels (each is a full-screen "room") -->
+  <div class="zone-container" id="zoneContainer">
+
+    <!-- PERFORMANCE -->
+    <div class="zone" id="zone-performance" data-zone="performance" aria-hidden="false">
+      <div class="zone-env zone-env--performance" aria-hidden="true">
+        <div class="ze-ceiling"></div>
+        <div class="ze-wall-l"></div>
+        <div class="ze-wall-r"></div>
+        <div class="ze-spot ze-spot--l"></div>
+        <div class="ze-spot ze-spot--r"></div>
+        <div class="ze-floor">
+          <div class="ze-floor-grid"></div>
+          <div class="ze-floor-sheen"></div>
+        </div>
+        <div class="ze-arch-line ze-arch-line--t"></div>
+        <div class="ze-arch-line ze-arch-line--b"></div>
+      </div>
+      <div class="zone-vehicles" id="veh-performance"><!-- JS injects hotspots --></div>
+      <div class="zone-badge" aria-hidden="true">Performance</div>
+    </div>
+
+    <!-- SUV -->
+    <div class="zone" id="zone-suv" data-zone="suv" aria-hidden="true">
+      <div class="zone-env zone-env--suv" aria-hidden="true">
+        <div class="ze-ceiling"></div>
+        <div class="ze-wall-l"></div>
+        <div class="ze-wall-r"></div>
+        <div class="ze-spot ze-spot--l"></div>
+        <div class="ze-spot ze-spot--r"></div>
+        <div class="ze-floor">
+          <div class="ze-floor-grid"></div>
+          <div class="ze-floor-sheen"></div>
+        </div>
+        <div class="ze-arch-line ze-arch-line--t"></div>
+        <div class="ze-arch-line ze-arch-line--b"></div>
+      </div>
+      <div class="zone-vehicles" id="veh-suv"><!-- JS injects hotspots --></div>
+      <div class="zone-badge" aria-hidden="true">SUV</div>
+    </div>
+
+    <!-- EXECUTIVE -->
+    <div class="zone" id="zone-executive" data-zone="executive" aria-hidden="true">
+      <div class="zone-env zone-env--executive" aria-hidden="true">
+        <div class="ze-ceiling"></div>
+        <div class="ze-wall-l"></div>
+        <div class="ze-wall-r"></div>
+        <div class="ze-spot ze-spot--l"></div>
+        <div class="ze-spot ze-spot--r"></div>
+        <div class="ze-floor">
+          <div class="ze-floor-grid"></div>
+          <div class="ze-floor-sheen"></div>
+        </div>
+        <div class="ze-arch-line ze-arch-line--t"></div>
+        <div class="ze-arch-line ze-arch-line--b"></div>
+      </div>
+      <div class="zone-vehicles" id="veh-executive"><!-- JS injects hotspots --></div>
+      <div class="zone-badge" aria-hidden="true">Executive</div>
+    </div>
+
+    <!-- COLLECTOR -->
+    <div class="zone" id="zone-collector" data-zone="collector" aria-hidden="true">
+      <div class="zone-env zone-env--collector" aria-hidden="true">
+        <div class="ze-ceiling"></div>
+        <div class="ze-wall-l"></div>
+        <div class="ze-wall-r"></div>
+        <div class="ze-spot ze-spot--l"></div>
+        <div class="ze-spot ze-spot--r"></div>
+        <div class="ze-floor">
+          <div class="ze-floor-grid"></div>
+          <div class="ze-floor-sheen"></div>
+        </div>
+        <div class="ze-arch-line ze-arch-line--t"></div>
+        <div class="ze-arch-line ze-arch-line--b"></div>
+      </div>
+      <div class="zone-vehicles" id="veh-collector"><!-- JS injects hotspots --></div>
+      <div class="zone-badge" aria-hidden="true">Collector</div>
+    </div>
+
+  </div><!-- .zone-container -->
+
+  <!-- Showroom HUD -->
+  <div class="showroom-hud" aria-hidden="true">
+    <div class="hud-left">
+      <span class="hud-zone-name" id="hudZoneName">Performance</span>
+      <span class="hud-sep">·</span>
+      <span class="hud-count" id="hudCount">2 vehicles</span>
+    </div>
+    <div class="hud-center">
+      <span class="hud-hint">Hover a vehicle · Click to enter</span>
+    </div>
+    <div class="hud-right">
+      <button class="hud-nav-btn" id="prevZone" aria-label="Previous zone">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="hud-nav-btn" id="nextZone" aria-label="Next zone">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     VEHICLE DETAIL OVERLAY
+═══════════════════════════════════════════════════ -->
+<div id="vehicleDetail" class="vehicle-detail" aria-hidden="true" role="dialog" aria-label="Vehicle detail">
+
+  <!-- Back -->
+  <button class="vd-back" id="backToShowroom">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Volver al Showroom
+  </button>
+
+  <!-- Stage: car viewer -->
+  <div class="vd-stage">
+
+    <div class="vd-viewer" id="carViewer" aria-label="Rotate vehicle by dragging" role="img">
+      <!-- Stage atmosphere -->
+      <div class="vdv-bg" aria-hidden="true">
+        <div class="vdv-spot"></div>
+        <div class="vdv-columns">
+          <div class="vdv-col"></div>
+          <div class="vdv-col"></div>
+        </div>
+      </div>
+
+      <!-- 3D car wrap -->
+      <div class="vdv-car-wrap">
+        <div class="vdv-car" id="vdCar">
+          <!-- Vehicle SVG injected by JS -->
+          <div class="vdv-svg-holder" id="vdSvgHolder"></div>
+          <!-- Moving sheen/reflection layer -->
+          <div class="vdv-sheen" id="vdSheen"></div>
+        </div>
+        <!-- Floor reflection -->
+        <div class="vdv-floor-ref" id="vdFloorRef"></div>
+        <!-- Floor spotlight glow -->
+        <div class="vdv-floor-glow" id="vdFloorGlow"></div>
+      </div>
+
+      <!-- Drag hint -->
+      <div class="vdv-drag-hint" id="vdDragHint" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M9 3v8M15 3v8M7 11h10l1 8H6l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Arrastra para rotar
+      </div>
+    </div>
+
+    <!-- Thumbnail gallery -->
+    <div class="vd-gallery" id="vdGallery" aria-label="Vehicle gallery">
+      <div class="vdg-track" id="vdgTrack">
+        <!-- Thumbnails injected by JS -->
+      </div>
+    </div>
+
+  </div><!-- .vd-stage -->
+
+  <!-- Info panel -->
+  <aside class="vd-info" aria-label="Vehicle information">
+    <div class="vdi-scroll">
+
+      <!-- Header -->
+      <header class="vdi-header">
+        <div class="vdi-badge" id="vdiBadge"></div>
+        <div class="vdi-brand" id="vdiBrand"></div>
+        <h2 class="vdi-model" id="vdiModel"></h2>
+        <div class="vdi-meta-row">
+          <span class="vdi-year" id="vdiYear"></span>
+          <span class="vdi-sep">·</span>
+          <span class="vdi-condition" id="vdiCondition"></span>
+        </div>
+        <div class="vdi-price" id="vdiPrice"></div>
+      </header>
+
+      <!-- Specs grid -->
+      <div class="vdi-specs" id="vdiSpecs" aria-label="Vehicle specifications">
+        <!-- Spec items injected by JS -->
+      </div>
+
+      <!-- Description -->
+      <div class="vdi-description">
+        <p id="vdiDesc"></p>
+      </div>
+
+      <!-- Highlights -->
+      <div class="vdi-highlights">
+        <h4>Highlights</h4>
+        <ul id="vdiHighlights"></ul>
+      </div>
+
+      <!-- Actions -->
+      <div class="vdi-actions">
+        <a id="vdiWhatsApp" href="#" target="_blank" rel="noopener" class="vdi-btn vdi-btn--primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L0 24l6.336-1.504A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.87 0-3.628-.48-5.164-1.32l-.37-.218-3.834.91.954-3.726-.242-.384A9.94 9.94 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/>
+          </svg>
+          Contactar por WhatsApp
+        </a>
+        <button class="vdi-btn vdi-btn--secondary" id="vdiBtnInfo">Solicitar Información</button>
+        <button class="vdi-btn vdi-btn--ghost" id="vdiBtnVisit">Agendar Visita</button>
+      </div>
+
+    </div>
+  </aside>
+
+</div><!-- #vehicleDetail -->
+
+<!-- ═══════════════════════════════════════════════════
+     BRAND SECTIONS (below showroom, scrollable)
+═══════════════════════════════════════════════════ -->
+<div id="brandSections" class="brand-sections">
+
+  <!-- ABOUT -->
+  <section id="about" class="section-about" aria-label="About Q2 Saloon">
+    <div class="section-inner">
+      <div class="section-label">Quiénes Somos</div>
+      <h2 class="section-title">Una Curaduría<br><em>Sin Precedentes</em></h2>
+      <div class="about-body">
+        <div class="about-text">
+          <p>Q2 Saloon nació de una visión simple pero ambiciosa: llevar los vehículos más exclusivos del mundo al mercado ecuatoriano con el nivel de servicio que merecen.</p>
+          <p>Somos más que un concesionario. Somos curadores de experiencias automotrices. Cada vehículo en nuestro inventario pasa por un riguroso proceso de selección, verificación y preparación para asegurar que supere las expectativas más exigentes.</p>
+          <p>Desde Quito, servimos a coleccionistas y entusiastas en todo Ecuador, ofreciendo acceso a máquinas que normalmente solo existen en revistas.</p>
+        </div>
+        <div class="about-stats" aria-label="Company statistics">
+          <div class="stat">
+            <span class="stat__n" data-target="6">0</span><span class="stat__unit">+</span>
+            <span class="stat__l">Años en el mercado</span>
+          </div>
+          <div class="stat">
+            <span class="stat__n" data-target="150">0</span><span class="stat__unit">+</span>
+            <span class="stat__l">Vehículos entregados</span>
+          </div>
+          <div class="stat">
+            <span class="stat__n" data-target="40">0</span><span class="stat__unit">+</span>
+            <span class="stat__l">Marcas representadas</span>
+          </div>
+          <div class="stat">
+            <span class="stat__n" data-target="100">0</span><span class="stat__unit">%</span>
+            <span class="stat__l">Clientes satisfechos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="section-why" aria-label="Why Q2 Saloon">
+    <div class="section-inner">
+      <div class="section-label">Por Qué Elegirnos</div>
+      <h2 class="section-title">La Diferencia <em>Q2</em></h2>
+      <div class="why-grid">
+
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none">
+              <circle cx="22" cy="22" r="20" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M14 22l6 6 10-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Autenticidad Certificada</h3>
+          <p>Cada vehículo es verificado con reportes de historial, inspecciones mecánicas y documentación completa de origen. Cero sorpresas.</p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none">
+              <path d="M22 6L10 12v11c0 7.5 5.5 14 12 15.5C29.5 37 35 30.5 35 23V12L22 6z" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h3>Inventario Curado</h3>
+          <p>No trabajamos con volumen. Seleccionamos únicamente los especímenes más excepcionales de cada categoría a nivel global.</p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none">
+              <circle cx="22" cy="16" r="7" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M8 38c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Asesoría Exclusiva</h3>
+          <p>Un especialista dedicado te acompaña en cada paso. Disponibilidad completa, discreción absoluta, criterio de coleccionista.</p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none">
+              <rect x="8" y="10" width="28" height="24" rx="2" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M8 17h28M15 10v7M29 10v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Gestión Integral</h3>
+          <p>Importación, homologación, trámites, seguro y entrega. Te entregamos tu vehículo listo para rodar, sin complicaciones.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-contact" aria-label="Contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+
+        <div class="contact-left">
+          <div class="section-label">Contáctanos</div>
+          <h2 class="contact-title">Hagamos Realidad<br><em>tu Próximo Vehículo</em></h2>
+          <dl class="contact-details">
+            <div class="cd-row">
+              <dt>WhatsApp</dt>
+              <dd><a href="https://wa.me/593000000000" target="_blank" rel="noopener">+593 XX XXX XXXX</a></dd>
+            </div>
+            <div class="cd-row">
+              <dt>Email</dt>
+              <dd><a href="mailto:info@q2saloon.com">info@q2saloon.com</a></dd>
+            </div>
+            <div class="cd-row">
+              <dt>Ubicación</dt>
+              <dd>Quito, Ecuador</dd>
+            </div>
+            <div class="cd-row">
+              <dt>Horario</dt>
+              <dd>Lun–Vie 9:00–18:00 · Sáb 9:00–14:00</dd>
+            </div>
+          </dl>
+          <a href="https://wa.me/593000000000" class="contact-wa-btn" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L0 24l6.336-1.504A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.87 0-3.628-.48-5.164-1.32l-.37-.218-3.834.91.954-3.726-.242-.384A9.94 9.94 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/>
+            </svg>
+            Iniciar Conversación en WhatsApp
+          </a>
+        </div>
+
+        <div class="contact-right">
+          <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+            <h3>Solicitar Información</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Nombre</label>
+                <input type="text" id="cf-name" name="name" placeholder="Tu nombre completo" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-phone">Teléfono</label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="+593 XX XXX XXXX" autocomplete="tel" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-interest">Vehículo de interés</label>
+              <input type="text" id="cf-interest" name="interest" placeholder="¿Qué vehículo te interesa?" />
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Mensaje</label>
+              <textarea id="cf-message" name="message" rows="4" placeholder="Cuéntanos qué buscas..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Enviar Solicitud</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- #brandSections -->
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer class="site-footer" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">Q2 SALOON</div>
+      <div class="footer-tagline">Exclusive Machines. Curated for Ecuador.</div>
+    </div>
+    <div class="footer-mid">
+      <div class="footer-col">
+        <h4>Showroom</h4>
+        <button class="footer-zone zone-tab" data-zone="performance">Performance</button>
+        <button class="footer-zone zone-tab" data-zone="suv">SUV</button>
+        <button class="footer-zone zone-tab" data-zone="executive">Executive</button>
+        <button class="footer-zone zone-tab" data-zone="collector">Collector</button>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <button class="footer-link" id="footerAbout">Nosotros</button>
+        <button class="footer-link" id="footerContact">Contacto</button>
+        <button class="footer-link" id="footerShowroom">Ver Showroom</button>
+      </div>
+      <div class="footer-col">
+        <h4>Conectar</h4>
+        <a href="https://wa.me/593000000000" class="footer-link" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:info@q2saloon.com" class="footer-link">Email</a>
+        <a href="#" class="footer-link" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Q2 Saloon. Todos los derechos reservados.</span>
+      <span>Quito, Ecuador</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Global transition curtain -->
+<div id="curtain" class="curtain" aria-hidden="true"></div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
